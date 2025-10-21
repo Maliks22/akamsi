@@ -1,0 +1,190 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- PREAMBLE UNIVERSAL ---
+\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage{fontspec}
+\usepackage[indonesian, bidi=basic, provide=*]{babel}
+\babelprovide[import, onchar=ids fonts]{indonesian}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Sans}
+\newfontfamily\emojifont{Noto Color Emoji}
+\DeclareTextFontCommand{\emoji}{\emojifont} % Robust command for emojis
+\usepackage{enumitem}
+\setlist[itemize]{label=\textbullet}
+% --- Packages for styling ---
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+% --- Define Colors ---
+\definecolor{mainorange}{HTML}{F97316}
+\definecolor{darkgray}{HTML}{374151}
+\definecolor{lightgray}{HTML}{F3F4F6}
+\definecolor{mediumgray}{HTML}{6B7280}
+\definecolor{headergreen}{HTML}{10B981}
+\definecolor{lightblue}{HTML}{EFF6FF}
+\definecolor{darkblue}{HTML}{3B82F6}
+\definecolor{lightred}{HTML}{FEF2F2}
+\definecolor{darkred}{HTML}{EF4444}
+
+
+% --- Remove page number and set background ---
+\usepackage{pagecolor}
+\pagenumbering{gobble}
+\pagecolor{white}
+
+% --- Custom Commands ---
+\newcommand{\sectiontitle}[1]{{\fontsize{16}{18}\bfseries\color{darkgray}#1}}
+
+\begin{document}
+
+% --- MAIN HEADER ---
+\begin{center}
+    \fcolorbox{mainorange}{mainorange}{
+        \parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{
+            \centering
+            \fontsize{24}{28}\bfseries\color{white}
+            Jangan Dibuang, Jelantahmu Berharga!
+        }
+    }
+    \vspace{2mm}
+    \fontsize{12}{14}\color{mediumgray}
+    Gerakan Peduli Lingkungan \& Kesehatan oleh Komunitas Desa Watangsono
+\end{center}
+\vspace{8mm}
+
+
+% --- SECTION 1: DANGER & BENEFITS ---
+\begin{tabularx}{\textwidth}{@{}X@{\hspace{8mm}}X@{}}
+    
+    % --- Left Column: DANGER ---
+    \fcolorbox{darkred}{lightred}{
+        \begin{minipage}[t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
+            \vspace{3mm}
+            \sectiontitle{\emoji{💔} Bahaya Jelantah}
+            \vspace{2mm}
+            
+            \textbf{\color{darkred}Untuk Lingkungan Kita:}
+            \begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+                \item \textbf{Saluran Mampet:} Menyumbat pipa dan selokan.
+                \item \textbf{Meracuni Air:} 1 liter jelantah merusak 1.000 liter air bersih.
+                \item \textbf{Merusak Tanah:} Membuat tanah tidak subur.
+            \end{itemize}
+            \vspace{2mm}
+            \textbf{\color{darkred}Untuk Kesehatan Keluarga:}
+            \begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+                \item \textbf{Pemicu Kolesterol \& Jantung.}
+                \item \textbf{Risiko Kanker:} Mengandung zat karsinogenik.
+                \item \textbf{Gangguan Pencernaan.}
+            \end{itemize}
+            \vspace{3mm}
+        \end{minipage}
+    }
+    &
+    % --- Right Column: BENEFITS ---
+    \fcolorbox{headergreen}{headergreen!10}{
+        \begin{minipage}[t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
+            \vspace{3mm}
+            \sectiontitle{\emoji{✨} Jelantah Bisa Jadi Berkah!}
+            \vspace{2mm}
+            
+            \color{mediumgray}
+            Minyak jelantah yang terkumpul dapat diubah menjadi produk yang lebih bernilai dan bermanfaat, seperti:
+            \vspace{3mm}
+            
+            \begin{itemize}[leftmargin=*, itemsep=2mm, topsep=1pt]
+                \item[\emoji{⛽}] \textbf{Biodiesel:} Bahan bakar alternatif yang lebih ramah lingkungan.
+                \item[\emoji{🧼}] \textbf{Sabun Serbaguna:} Efektif untuk membersihkan noda membandel.
+                \item[\emoji{🕯️}] \textbf{Lilin \& Kerajinan:} Bahan dasar untuk lilin penerangan atau hiasan.
+            \end{itemize}
+            \vspace{3mm}
+        \end{minipage}
+    }
+    
+\end{tabularx}
+\vspace{8mm}
+
+% --- SECTION 2: HOW IT WORKS ---
+\fcolorbox{darkblue}{lightblue}{
+\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+    \vspace{4mm}
+    \begin{center}
+        \sectiontitle{Solusi Mudah: JELANTAH DIJEMPUT!}
+        \vspace{1mm}
+        
+        \color{mediumgray}
+        Kami tahu warga sibuk. Biar relawan komunitas yang mengambil jelantah langsung ke rumah Anda!
+    \end{center}
+    \vspace{5mm}
+    
+    \begin{tabularx}{\linewidth}{@{}XccXccX@{}}
+        % Step 1
+        \begin{center}
+            \fcolorbox{mainorange}{mainorange}{\parbox{1.5cm}{\centering\huge\color{white}\bfseries 1}} \\
+            \vspace{2mm}
+            \textbf{SIMPAN} \\
+            \small\color{mediumgray}Kumpulkan jelantah dingin dalam botol bekas.
+        \end{center}
+        & \hspace{5mm} & {\huge\color{mainorange!50}\bfseries $\rightarrow$} & \hspace{5mm} &
+        % Step 2
+        \begin{center}
+            \fcolorbox{mainorange}{mainorange}{\parbox{1.5cm}{\centering\huge\color{white}\bfseries 2}} \\
+            \vspace{2mm}
+            \textbf{KABARI KAMI} \\
+            \small\color{mediumgray}Hubungi koordinator jika sudah terkumpul.
+        \end{center}
+        & \hspace{5mm} & {\huge\color{mainorange!50}\bfseries $\rightarrow$} & \hspace{5mm} &
+        % Step 3
+        \begin{center}
+            \fcolorbox{headergreen}{headergreen}{\parbox{1.5cm}{\centering\huge\color{white}\bfseries 3}} \\
+            \vspace{2mm}
+            \textbf{KAMI JEMPUT} \\
+            \small\color{mediumgray}Tim relawan akan datang mengambilnya. Gratis!
+        \end{center}
+    \end{tabularx}
+    \vspace{6mm}
+\end{minipage}
+}
+\vspace{8mm}
+
+% --- SECTION 3: CALL TO ACTION & CONTACT ---
+\fcolorbox{mainorange}{lightgray}{
+\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\vspace{4mm}
+\begin{center}
+    \fontsize{14}{16}\bfseries\color{darkgray}
+    Ayo Ubah Limbah Jadi Berkah!
+    
+    \vspace{2mm}
+    \normalsize\normalfont\color{mediumgray}
+    Mari wujudkan Desa Watangsono yang lebih bersih, sehat, dan mandiri.
+    Setiap tetes jelantahmu sangat berarti.
+    \vspace{4mm}
+    
+    \rule{\dimexpr\linewidth-1cm\relax}{0.4pt}
+    \vspace{4mm}
+    
+    \textbf{Info Lebih Lanjut \& Jadwal Penjemputan Hubungi:}
+    
+    \fontsize{20}{22}\bfseries\color{mainorange}
+    Afridal
+    
+    \fontsize{16}{18}\bfseries\color{darkgray}
+    0814-1204-1995
+    \vspace{4mm}
+\end{center}
+\end{minipage}
+}
+
+% --- FOOTER ---
+\vfill
+\begin{center}
+    \color{mediumgray}\small
+    \textbf{Komitmen Kami: 100\% Sosial \& Transparan} \\
+    \textit{Jika di masa depan gerakan ini menghasilkan dana, pengelolaannya akan dilakukan secara terbuka untuk kepentingan bersama warga desa.}
+\end{center}
+
+\end{document}
+
