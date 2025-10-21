@@ -1,190 +1,221 @@
-\documentclass[11pt, a4paper]{article}
+<!-- Chosen Palette: Community Spirit -->
+<!-- Narrative Plan: The SPA is structured as a persuasive journey for the Watangsono community. It starts with a relatable problem (Problem), shows the positive potential (Potential), provides a simple, actionable solution (Solution), visualizes the power of community action (Impact), clarifies the mission (Commitment), and ends with a clear call to action (Join Us). This narrative flow is designed to build understanding and motivate participation. -->
+<!-- Visualization Choices: Problem/Potential Impacts -> Goal: Inform -> Viz: Icon-based cards (HTML/CSS) -> Justification: High-impact, quickly understandable visuals for key facts. How-To Process -> Goal: Organize -> Viz: Numbered step-flow diagram (HTML/CSS) -> Justification: Clearly illustrates the simple participation process without complex diagrams. NO Mermaid/SVG. Collective Impact -> Goal: Compare -> Viz: Bar Chart (Chart.js/Canvas) -> Justification: Powerfully visualizes the difference between individual and community-wide action, reinforcing the "gotong royong" spirit. Benefit Composition -> Goal: Compare -> Viz: Donut Chart (Chart.js/Canvas) -> Justification: Shows how the program contributes to various aspects of community well-being as a whole. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografis Gerakan Jelantah Watangsono</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .chart-container { position: relative; width: 100%; max-width: 450px; margin-left: auto; margin-right: auto; height: 300px; max-h-96; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .nav-link { transition: color 0.3s, border-bottom-color 0.3s; }
+        .nav-link.active { color: #f97316; border-bottom-color: #f97316; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
 
-% --- PREAMBLE UNIVERSAL ---
-\usepackage[a4paper, margin=1.5cm]{geometry}
-\usepackage{fontspec}
-\usepackage[indonesian, bidi=basic, provide=*]{babel}
-\babelprovide[import, onchar=ids fonts]{indonesian}
-\babelprovide[import, onchar=ids fonts]{english}
-\babelfont{rm}{Noto Sans}
-\newfontfamily\emojifont{Noto Color Emoji}
-\DeclareTextFontCommand{\emoji}{\emojifont} % Robust command for emojis
-\usepackage{enumitem}
-\setlist[itemize]{label=\textbullet}
-% --- Packages for styling ---
-\usepackage{xcolor}
-\usepackage{graphicx}
-\usepackage{tabularx}
-\usepackage{hyperref}
-\usepackage{amsmath}
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-center items-center">
+            <div id="navbar" class="flex space-x-4 sm:space-x-6 text-sm sm:text-base text-gray-600">
+                <a href="#problem" class="nav-link py-1 border-b-2 border-transparent">Masalah</a>
+                <a href="#solution" class="nav-link py-1 border-b-2 border-transparent">Solusi</a>
+                <a href="#impact" class="nav-link py-1 border-b-2 border-transparent">Dampak</a>
+                <a href="#join" class="nav-link py-1 border-b-2 border-transparent">Gabung</a>
+            </div>
+        </nav>
+    </header>
 
-% --- Define Colors ---
-\definecolor{mainorange}{HTML}{F97316}
-\definecolor{darkgray}{HTML}{374151}
-\definecolor{lightgray}{HTML}{F3F4F6}
-\definecolor{mediumgray}{HTML}{6B7280}
-\definecolor{headergreen}{HTML}{10B981}
-\definecolor{lightblue}{HTML}{EFF6FF}
-\definecolor{darkblue}{HTML}{3B82F6}
-\definecolor{lightred}{HTML}{FEF2F2}
-\definecolor{darkred}{HTML}{EF4444}
+    <main class="container mx-auto px-4 sm:px-6 py-8">
 
+        <section class="text-center pt-8 pb-16">
+            <h1 class="text-3xl md:text-5xl font-bold text-orange-600">Jangan Dibuang, Jelantahmu Berharga!</h1>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Sebuah gerakan peduli dari, oleh, dan untuk warga Desa Watangsono demi lingkungan yang lebih bersih dan sehat.</p>
+        </section>
 
-% --- Remove page number and set background ---
-\usepackage{pagecolor}
-\pagenumbering{gobble}
-\pagecolor{white}
+        <div class="space-y-20">
 
-% --- Custom Commands ---
-\newcommand{\sectiontitle}[1]{{\fontsize{16}{18}\bfseries\color{darkgray}#1}}
-
-\begin{document}
-
-% --- MAIN HEADER ---
-\begin{center}
-    \fcolorbox{mainorange}{mainorange}{
-        \parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{
-            \centering
-            \fontsize{24}{28}\bfseries\color{white}
-            Jangan Dibuang, Jelantahmu Berharga!
-        }
-    }
-    \vspace{2mm}
-    \fontsize{12}{14}\color{mediumgray}
-    Gerakan Peduli Lingkungan \& Kesehatan oleh Komunitas Desa Watangsono
-\end{center}
-\vspace{8mm}
-
-
-% --- SECTION 1: DANGER & BENEFITS ---
-\begin{tabularx}{\textwidth}{@{}X@{\hspace{8mm}}X@{}}
-    
-    % --- Left Column: DANGER ---
-    \fcolorbox{darkred}{lightred}{
-        \begin{minipage}[t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
-            \vspace{3mm}
-            \sectiontitle{\emoji{💔} Bahaya Jelantah}
-            \vspace{2mm}
+            <section id="problem" class="scroll-mt-20">
+                <h2 class="text-2xl font-bold text-center mb-2">Bahaya Jelantah di Sekitar Kita</h2>
+                <p class="text-center text-gray-500 mb-8 max-w-3xl mx-auto">Tanpa disadari, jelantah yang dibuang sembarangan bisa menjadi masalah serius bagi lingkungan dan kesehatan keluarga kita.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-lg flex items-center"><span class="text-2xl mr-3">💔</span>Ancaman Kesehatan Keluarga</h3>
+                        <ul class="mt-2 list-disc list-inside text-gray-700 space-y-1">
+                            <li>Memicu kolesterol tinggi dan penyakit jantung.</li>
+                            <li>Menghasilkan zat pemicu kanker (karsinogenik).</li>
+                            <li>Menyebabkan gangguan pencernaan.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                        <h3 class="font-bold text-lg flex items-center"><span class="text-2xl mr-3">💧</span>Kerusakan Lingkungan Desa</h3>
+                        <ul class="mt-2 list-disc list-inside text-gray-700 space-y-1">
+                            <li>1 liter jelantah merusak 1.000 liter air bersih.</li>
+                            <li>Menyumbat selokan dan menyebabkan bau tak sedap.</li>
+                            <li>Membuat tanah menjadi tidak subur.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
             
-            \textbf{\color{darkred}Untuk Lingkungan Kita:}
-            \begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
-                \item \textbf{Saluran Mampet:} Menyumbat pipa dan selokan.
-                \item \textbf{Meracuni Air:} 1 liter jelantah merusak 1.000 liter air bersih.
-                \item \textbf{Merusak Tanah:} Membuat tanah tidak subur.
-            \end{itemize}
-            \vspace{2mm}
-            \textbf{\color{darkred}Untuk Kesehatan Keluarga:}
-            \begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
-                \item \textbf{Pemicu Kolesterol \& Jantung.}
-                \item \textbf{Risiko Kanker:} Mengandung zat karsinogenik.
-                \item \textbf{Gangguan Pencernaan.}
-            \end{itemize}
-            \vspace{3mm}
-        \end{minipage}
-    }
-    &
-    % --- Right Column: BENEFITS ---
-    \fcolorbox{headergreen}{headergreen!10}{
-        \begin{minipage}[t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
-            \vspace{3mm}
-            \sectiontitle{\emoji{✨} Jelantah Bisa Jadi Berkah!}
-            \vspace{2mm}
+            <section id="solution" class="scroll-mt-20">
+                <h2 class="text-2xl font-bold text-center mb-2">Solusi Mudah: Jelantah Dijemput!</h2>
+                <p class="text-center text-gray-500 mb-8 max-w-3xl mx-auto">Kami tahu warga sibuk. Karena ini gerakan bersama, biar relawan komunitas yang mengambil jelantah langsung ke rumah Anda. Mudah dan gratis!</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 text-center">
+                    <div class="card bg-white p-6 rounded-lg shadow-md max-w-xs w-full">
+                        <div class="bg-orange-500 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto">1</div>
+                        <h3 class="font-semibold text-lg mt-4">Simpan</h3>
+                        <p class="text-gray-600 text-sm mt-1">Kumpulkan jelantah dingin dalam botol atau jeriken bekas.</p>
+                    </div>
+                    <div class="text-2xl text-gray-300 hidden md:block">➔</div>
+                     <div class="text-2xl text-gray-300 md:hidden">⬇</div>
+                    <div class="card bg-white p-6 rounded-lg shadow-md max-w-xs w-full">
+                        <div class="bg-orange-500 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto">2</div>
+                        <h3 class="font-semibold text-lg mt-4">Kabari Kami</h3>
+                        <p class="text-gray-600 text-sm mt-1">Hubungi kontak di bawah jika jelantah sudah terkumpul.</p>
+                    </div>
+                    <div class="text-2xl text-gray-300 hidden md:block">➔</div>
+                    <div class="text-2xl text-gray-300 md:hidden">⬇</div>
+                    <div class="card bg-white p-6 rounded-lg shadow-md max-w-xs w-full">
+                        <div class="bg-green-500 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold mx-auto">3</div>
+                        <h3 class="font-semibold text-lg mt-4">Kami Jemput</h3>
+                        <p class="text-gray-600 text-sm mt-1">Tim relawan akan datang mengambilnya sesuai jadwal.</p>
+                    </div>
+                </div>
+            </section>
             
-            \color{mediumgray}
-            Minyak jelantah yang terkumpul dapat diubah menjadi produk yang lebih bernilai dan bermanfaat, seperti:
-            \vspace{3mm}
+            <section id="impact" class="scroll-mt-20">
+                <h2 class="text-2xl font-bold text-center mb-2">Dampak Besar dari Langkah Kecil Kita</h2>
+                <p class="text-center text-gray-500 mb-8 max-w-3xl mx-auto">Setiap botol jelantah yang terkumpul adalah kemenangan bersama. Inilah gambaran kekuatan gotong royong warga Watangsono.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="font-semibold text-center mb-4">Kekuatan Kolektif Warga</h3>
+                        <div class="chart-container">
+                            <canvas id="collectiveImpactChart"></canvas>
+                        </div>
+                         <p class="text-xs text-center text-gray-500 mt-2">Grafik menunjukkan perbandingan jumlah air bersih yang diselamatkan jika 50 keluarga ikut berpartisipasi dibandingkan hanya 1 keluarga.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="font-semibold text-center mb-4">Manfaat Gerakan Ini</h3>
+                        <div class="chart-container">
+                             <canvas id="communityBenefitChart"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-500 mt-2">Jelantah yang terkumpul dapat diolah menjadi produk bermanfaat seperti biodiesel, sabun, dan lilin.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="join" class="scroll-mt-20">
+                <div class="bg-gradient-to-r from-orange-500 to-amber-500 text-white p-8 rounded-lg shadow-xl text-center">
+                    <h2 class="text-3xl font-bold">Ayo Bergabung dalam Gerakan Ini!</h2>
+                    <p class="mt-3 max-w-xl mx-auto">Jadikan Desa Watangsono percontohan desa yang bersih, sehat, dan peduli. Setiap tetes jelantahmu sangat berarti.</p>
+                    <div class="mt-6 bg-white text-gray-800 rounded-lg p-4 max-w-md mx-auto inline-block shadow-md">
+                        <p class="font-semibold">Info & Jadwal Penjemputan Hubungi:</p>
+                        <p class="text-2xl font-bold text-orange-600 mt-1">Afridal</p>
+                        <p class="text-lg font-semibold">0814-1204-1995</p>
+                    </div>
+                    <div class="mt-6 text-sm text-orange-100">
+                        <h4 class="font-semibold">Komitmen Kami: 100% Sosial & Transparan</h4>
+                        <p>Gerakan ini murni untuk kepentingan bersama. Jika di masa depan menghasilkan dana, akan dikelola secara terbuka untuk kegiatan sosial desa.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-6 mt-16 bg-gray-100">
+        <p class="text-gray-500 text-sm">&copy; 2025 Gerakan Peduli Jelantah | Inisiatif Komunitas Desa Watangsono</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const commonTooltipCallback = {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            };
             
-            \begin{itemize}[leftmargin=*, itemsep=2mm, topsep=1pt]
-                \item[\emoji{⛽}] \textbf{Biodiesel:} Bahan bakar alternatif yang lebih ramah lingkungan.
-                \item[\emoji{🧼}] \textbf{Sabun Serbaguna:} Efektif untuk membersihkan noda membandel.
-                \item[\emoji{🕯️}] \textbf{Lilin \& Kerajinan:} Bahan dasar untuk lilin penerangan atau hiasan.
-            \end{itemize}
-            \vspace{3mm}
-        \end{minipage}
-    }
-    
-\end{tabularx}
-\vspace{8mm}
+            const impactCtx = document.getElementById('collectiveImpactChart').getContext('2d');
+            new Chart(impactCtx, {
+                type: 'bar',
+                data: {
+                    labels: [['Air Tercemar', '(1 Keluarga)'], ['Air Diselamatkan', '(50 Keluarga)']],
+                    datasets: [{
+                        label: 'Liter Air Bersih',
+                        data: [1000, 50000],
+                        backgroundColor: ['rgba(239, 68, 68, 0.6)', 'rgba(34, 197, 94, 0.6)'],
+                        borderColor: ['rgba(239, 68, 68, 1)', 'rgba(34, 197, 94, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, ticks: { callback: value => value.toLocaleString('id-ID') + ' L' } } },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: commonTooltipCallback }
+                    }
+                }
+            });
 
-% --- SECTION 2: HOW IT WORKS ---
-\fcolorbox{darkblue}{lightblue}{
-\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
-    \vspace{4mm}
-    \begin{center}
-        \sectiontitle{Solusi Mudah: JELANTAH DIJEMPUT!}
-        \vspace{1mm}
-        
-        \color{mediumgray}
-        Kami tahu warga sibuk. Biar relawan komunitas yang mengambil jelantah langsung ke rumah Anda!
-    \end{center}
-    \vspace{5mm}
-    
-    \begin{tabularx}{\linewidth}{@{}XccXccX@{}}
-        % Step 1
-        \begin{center}
-            \fcolorbox{mainorange}{mainorange}{\parbox{1.5cm}{\centering\huge\color{white}\bfseries 1}} \\
-            \vspace{2mm}
-            \textbf{SIMPAN} \\
-            \small\color{mediumgray}Kumpulkan jelantah dingin dalam botol bekas.
-        \end{center}
-        & \hspace{5mm} & {\huge\color{mainorange!50}\bfseries $\rightarrow$} & \hspace{5mm} &
-        % Step 2
-        \begin{center}
-            \fcolorbox{mainorange}{mainorange}{\parbox{1.5cm}{\centering\huge\color{white}\bfseries 2}} \\
-            \vspace{2mm}
-            \textbf{KABARI KAMI} \\
-            \small\color{mediumgray}Hubungi koordinator jika sudah terkumpul.
-        \end{center}
-        & \hspace{5mm} & {\huge\color{mainorange!50}\bfseries $\rightarrow$} & \hspace{5mm} &
-        % Step 3
-        \begin{center}
-            \fcolorbox{headergreen}{headergreen}{\parbox{1.5cm}{\centering\huge\color{white}\bfseries 3}} \\
-            \vspace{2mm}
-            \textbf{KAMI JEMPUT} \\
-            \small\color{mediumgray}Tim relawan akan datang mengambilnya. Gratis!
-        \end{center}
-    \end{tabularx}
-    \vspace{6mm}
-\end{minipage}
-}
-\vspace{8mm}
+            const benefitCtx = document.getElementById('communityBenefitChart').getContext('2d');
+            new Chart(benefitCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Lingkungan Bersih', 'Warga Sehat', ['Potensi Dana', 'Sosial']],
+                    datasets: [{
+                        label: 'Manfaat',
+                        data: [50, 35, 15],
+                        backgroundColor: ['#22c55e', '#3b82f6', '#f59e0b'],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: { callbacks: commonTooltipCallback }
+                    }
+                }
+            });
 
-% --- SECTION 3: CALL TO ACTION & CONTACT ---
-\fcolorbox{mainorange}{lightgray}{
-\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
-\vspace{4mm}
-\begin{center}
-    \fontsize{14}{16}\bfseries\color{darkgray}
-    Ayo Ubah Limbah Jadi Berkah!
-    
-    \vspace{2mm}
-    \normalsize\normalfont\color{mediumgray}
-    Mari wujudkan Desa Watangsono yang lebih bersih, sehat, dan mandiri.
-    Setiap tetes jelantahmu sangat berarti.
-    \vspace{4mm}
-    
-    \rule{\dimexpr\linewidth-1cm\relax}{0.4pt}
-    \vspace{4mm}
-    
-    \textbf{Info Lebih Lanjut \& Jadwal Penjemputan Hubungi:}
-    
-    \fontsize{20}{22}\bfseries\color{mainorange}
-    Afridal
-    
-    \fontsize{16}{18}\bfseries\color{darkgray}
-    0814-1204-1995
-    \vspace{4mm}
-\end{center}
-\end{minipage}
-}
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
 
-% --- FOOTER ---
-\vfill
-\begin{center}
-    \color{mediumgray}\small
-    \textbf{Komitmen Kami: 100\% Sosial \& Transparan} \\
-    \textit{Jika di masa depan gerakan ini menghasilkan dana, pengelolaannya akan dilakukan secara terbuka untuk kepentingan bersama warga desa.}
-\end{center}
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                        });
+                    }
+                });
+            }, observerOptions);
 
-\end{document}
-
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
